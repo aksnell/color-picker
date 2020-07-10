@@ -1,8 +1,8 @@
 import React from 'react'
-import HelloWorld from './components/HelloWorld'
+import ColorPicker from './components/ColorPicker'
 
 function App() {
-  return <HelloWorld />
+  return <ColorPicker />
 }
 
 export default App
