@@ -17,6 +17,8 @@ export default function ColorPicker() {
                     ...state,
                     ...action.payload,
                 }
+            case 'randomize':
+                return createRandomHSL()
         }
     }
 
@@ -33,7 +35,7 @@ export default function ColorPicker() {
     }
 
     const handlePress = () => {
-
+        dispatch({type: 'randomize'})
     }
 
     const backgroundColor = `hsl(${state.hue}, ${state.saturation}%, ${state.lightness}%)`
@@ -42,7 +44,9 @@ export default function ColorPicker() {
         <section className="color-picker">
             <div className="color-picker-preview" style={{
                 backgroundColor }}>
-                {state.hue},{state.saturation},{state.lightness}
+                <span className="color-picker-text">
+                    {backgroundColor}
+                </span>
             </div>
             <fieldset className="color-picker-inputs">
                 <label className="color-label" htmlFor="hue">H</label>
@@ -52,6 +56,9 @@ export default function ColorPicker() {
                 <label className="color-label" htmlFor="lightness">L</label>
                 <input className="color-input" name="lightness" type="range" min="0" max="100" value={state.lightness} onChange={handleSlider} />
             </fieldset>
+            <button className="color-button" type="button" onClick={handlePress}>
+                Randomize!
+            </button>
         </section>
     )
 }
